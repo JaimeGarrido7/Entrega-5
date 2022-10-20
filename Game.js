@@ -1,9 +1,12 @@
 
-// El juengo en si
+/**
+ * El propio juego
+ */
 
 class Game {
-    // Inicializa un juego
-
+    /**
+     * Inicializa un juego
+     */
     constructor () {
         this.started = false; // Indica si el juego ha comenzado o no
         this.ended = false; // Indica si el juego ha terminado o no
@@ -19,16 +22,22 @@ class Game {
         this.score = 0; // Puntuación del jugador
     }
 
-    // Da comienzo a la partida
+    /**
+     * Da comienzo a la partida
+     */
 
     start () {
         if (!this.started) {
+            // RequestAnimationFrame(this.update());
             window.addEventListener("keydown", (e) => this.checkKey(e, true));
             window.addEventListener("keyup", (e) => this.checkKey(e, false));
             window.addEventListener("touchstart", (e) => this.handleTouchStart(e, true));
             window.addEventListener("touchmove", (e) => this.handleTouchMove(e, false));
             document.getElementById("pause").addEventListener("click", () => {
                 this.pauseOrResume();
+            });
+            document.getElementById("reset").addEventListener("click", () => {
+                this.resetGame();
             });
             this.started = true;
             this.width = window.innerWidth;
@@ -39,7 +48,9 @@ class Game {
         }
     }
 
-    // Pausa o continúa el juego
+    /**
+     * Pausa o continúa el juego
+     */
 
     pauseOrResume() {
         if (this.paused) {
@@ -54,7 +65,7 @@ class Game {
     }
     /**
      * Añade un nuevo disparo al juego, ya sea del oponente o del personaje principal
-     * (characte) Personaje que dispara
+     * @param character {Character} Personaje que dispara
      */
   
     shoot (character) {
@@ -66,7 +77,7 @@ class Game {
 
     /**
      * Elimina un disparo del juego cuando se sale de la pantalla o el juego se acaba
-     * (shot) Disparo que se quiere eliminar
+     * @param shot {Shot} Disparo que se quiere eliminar
      */
   
     removeShot (shot) {
@@ -78,7 +89,9 @@ class Game {
         }
     }
 
-    // Elimina al oponente del juego
+     /**
+     * Elimina al oponente del juego
+     */
   
     removeOpponent () {
 
@@ -96,8 +109,8 @@ class Game {
 
     /**
      * Comprueba la tecla que está pulsando el usuario
-     * (event) Evento de tecla levantada/pulsada
-     * (isKeyDown) Indica si la tecla está pulsada (true) o no (false)
+     * @param event {Event} Evento de tecla levantada/pulsada
+     * @param isKeyDown {Boolean} Indica si la tecla está pulsada (true) o no (false)
      */
 
     checkKey (event, isKeyDown) {
@@ -122,8 +135,8 @@ class Game {
 
     /**
      * Comprueba la posición de la pantalla que está tocando el usuario
-     * (evt) Evento de tocar la pantalla
-     * Devuelve la posición de la pantalla que está tocando el usuario
+     * @param evt {Event} Evento de tocar la pantalla
+     * @returns {*} Posición de la pantalla que está tocando el usuario
      */
 
     getTouches (evt) {
@@ -131,8 +144,8 @@ class Game {
     }
 
     /**
-     * Tocar sobre la pantalla
-     * (evt) Evento de tocar la pantalla
+     * Maneja el evento de tocar sobre la pantalla
+     * @param evt {Event} Evento de tocar la pantalla
      */
 
     handleTouchStart (evt) {
@@ -143,8 +156,8 @@ class Game {
     }
 
     /**
-     * Arrastra el dedo sobre la pantalla
-     * (evt) Evento de arrastrar el dedo sobre la pantalla
+     * Maneja el evento de arrastrar el dedo sobre la pantalla
+     * @param evt {Event} Evento de arrastrar el dedo sobre la pantalla
      */
 
     handleTouchMove (evt) {
@@ -164,7 +177,9 @@ class Game {
         this.xDown = null; // Reseteo de valores
     }
 
-    // Comrpueba si el personaje principal y el oponente se han chocado entre sí o se han disparado utilizando el método hasCollision
+    /**
+     * Comrpueba si el personaje principal y el oponente se han chocado entre sí o con los disparos haciendo uso del método hasCollision
+     */
 
     checkCollisions () {
         let impact = false;
@@ -187,9 +202,9 @@ class Game {
 
     /**
      * Comprueba si dos elementos del juego se están chocando
-     * (item1) Elemento del juego 1
-     * (item2) Elemento del juego 2
-     * Devuelve true si se están chocando y false si no.
+     * @param item1 {Entity} Elemento del juego 1
+     * @param item2 {Entity} Elemento del juego 2
+     * @returns {boolean} Devuelve true si se están chocando y false si no.
      */
 
     hasCollision (item1, item2) {
@@ -208,8 +223,10 @@ class Game {
         return true;
     }
 
-    // Termina el juego
-
+     /**
+     * Termina el juego
+     */
+  
     endGame () {
         if (this.player.lives===0) {
             this.ended = true;
@@ -223,7 +240,16 @@ class Game {
       
     }
 
-    // Actualiza los elementos del juego
+    /**
+     * resetea el juego
+     */
+     resetGame () {
+       document.location.reload();
+     }
+
+    /**
+     * Actualiza los elementos del juego
+     */
 
     update () {
         if (!this.ended) {
@@ -243,7 +269,9 @@ class Game {
         }
     }
 
-    // Muestra todos los elementos del juego en la pantalla
+     /**
+     * Muestra todos los elementos del juego en la pantalla
+     */
 
     render () {
         this.player.render();

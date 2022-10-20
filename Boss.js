@@ -1,7 +1,8 @@
-
 class Boss extends Opponent {
   
-  // (game) La instancia del juego al que pertenece el oponente
+ /**
+ * @param game {Game} La instancia del juego al que pertenece el personaje
+ */
 
   constructor(game) {
     const height = (OPPONENT_HEIGHT * game.width) / 100,
@@ -10,12 +11,12 @@ class Boss extends Opponent {
       y = 0,
 
       speed = BOSS_SPEED,
-      myImageSrc = BOSS_PICTURE,
-      myImageDeadSrc = BOSS_PICTURE_DEAD;
-    super(game, width, height, x, y, speed, myImageSrc, myImageDeadSrc);
-    this.myImageSrc = BOSS_PICTURE;
-    this.image.src = this.myImageSrc;
-    this.myImageDeadSrc = BOSS_PICTURE_DEAD;
+      myImage = BOSS_PICTURE,
+      myImageDead = BOSS_PICTURE_DEAD;
+    super(game, width, height, x, y, speed, myImage, myImageDead);
+    this.myImage = BOSS_PICTURE;
+    this.image.src = this.myImage;
+    this.myImageDead = BOSS_PICTURE_DEAD;
     this.speed = BOSS_SPEED;
     this.direction = "R"; // Dirección del el oponente
     setTimeout(() => this.shoot(), 1000 + getRandomNumber(2500));

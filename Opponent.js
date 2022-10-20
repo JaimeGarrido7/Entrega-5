@@ -1,9 +1,11 @@
 
-// Monstruo al que tenemos que destruir
+/**
+ * Monstruo al que tenemos que destruir
+ */
 
 class Opponent extends Character {
     /**
-     * (game) La instancia del juego al que pertenece el oponente
+     * @param game {Game} La instancia del juego al que pertenece el oponente
      */
 
     constructor (game) {
@@ -12,15 +14,17 @@ class Opponent extends Character {
             x = getRandomNumber(game.width - width / 2),
             y = 0,
             speed = OPPONENT_SPEED,
-            myImageSrc = OPPONENT_PICTURE,
-            myImageDeadSrc = OPPONENT_PICTURE_DEAD;
+            myImage = OPPONENT_PICTURE,
+            myImageDead = OPPONENT_PICTURE_DEAD;
 
-        super(game, width, height, x, y, speed, myImageSrc, myImageDeadSrc);
+        super(game, width, height, x, y, speed, myImage, myImageDead);
         this.direction = "R"; // Dirección hacia la que se mueve el oponente
         setTimeout(() => this.shoot(), 1000 + getRandomNumber(2500));
     }
 
-    // Crea un nuevo disparo
+    /**
+     * Crea un nuevo disparo
+     */
   
     shoot () {
         if (!this.dead && !this.game.ended) {
@@ -31,7 +35,9 @@ class Opponent extends Character {
         }
     }
 
-    // Actualiza los atributos de posición del oponente
+    /**
+     * Actualiza los atributos de posición del oponente
+     */
   
     update () {
         if (!this.dead && !this.game.ended) {
@@ -58,7 +64,9 @@ class Opponent extends Character {
         }
     }
 
-    // Mata al oponente
+    /**
+     * Mata al oponente
+     */
 
     collide() {
         

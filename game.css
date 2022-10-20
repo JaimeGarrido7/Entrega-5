@@ -32,3 +32,13 @@ html {
 	font-family: monospace;
 	cursor: pointer;
 }	
+
+#reset {
+	border: yes;
+	background: #00d5ff;
+	color: #000000;
+	padding: 10px 20px;
+	outline: none;
+	font-family: monospace;
+	cursor: pointer;
+}	
