@@ -1,11 +1,15 @@
 html {
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-image: url("assets/fondo.jpeg");
+  background-position: center;
+  background-size: cover;
+  color: white;
 }
 
-.Opponent {
-	animation: rotation 3s infinite linear;
-	-webkit-animation: rotation 3s infinite linear;
-}
+
 
 .paused .Opponent {
 	animation: none;
@@ -25,7 +29,7 @@ html {
 
 #pause {
 	border: yes;
-	background: #00d5ff;
+	background: #ff5900;
 	color: #000000;
 	padding: 10px 20px;
 	outline: none;
@@ -35,10 +39,11 @@ html {
 
 #reset {
 	border: yes;
-	background: #00d5ff;
+	background: #ff5900;
 	color: #000000;
 	padding: 10px 20px;
 	outline: none;
 	font-family: monospace;
 	cursor: pointer;
 }	
+
